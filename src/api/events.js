@@ -35,3 +35,15 @@ export const updateEvent = (user, updatedEvent) => {
         data: { event: updatedEvent }
     })
 }
+
+//  DELETE -> remove function
+export const removeEvent = (user, eventId) => {
+    console.log('user', user)
+    return axios({
+        url: `${apiUrl}/events/${eventId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
