@@ -21,3 +21,17 @@ export const createEvent = (user, newEvent) => {
         data: {event: newEvent}
     })
 }
+
+// PATCH -> updated function
+export const updateEvent = (user, updatedEvent) => {
+    console.log('user', user)
+    console.log('this is newEvent', updatedEvent)
+    return axios({
+        url: `${apiUrl}/events/${updatedEvent._id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { event: updatedEvent }
+    })
+}
