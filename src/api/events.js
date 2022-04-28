@@ -7,6 +7,17 @@ export const getAllEvents = () => {
 
 // show function
 export const getOneEvent = (eventId) => {
-    return axios(`${apiUrl}/products/${eventId}`)
+    return axios(`${apiUrl}/events/${eventId}`)
 }
 
+// post -> create
+export const createEvent = (user, newEvent) => {
+    return axios({
+        url:`${apiUrl}/events`,
+        method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: {event: newEvent}
+    })
+}
