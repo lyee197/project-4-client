@@ -40,7 +40,7 @@ const IndexEvents = (props) => {
                 <Link to={`/events/${event._id}`}>
                     {event.name}
                 </Link>
-                <p>Number of attendies: {event.attendies.length()}</p>
+                {/* <p>Number of attendies: {event.attendies.length()}</p> */}
             </div>
         ))
     }
