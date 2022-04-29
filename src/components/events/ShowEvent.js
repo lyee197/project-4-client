@@ -51,14 +51,14 @@ const ShowEvent = (props) => {
                     <Card.Header> {event.name}</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <small>Host {event.owner}</small>
-                            <small>Description: {event.description}</small>
-                            <small>Event type: {event.event_type}</small>
+                            <small>Host {event.owner}</small> <br/>
+                            <small>Date of Event: {event.date}</small> <br/>
+                            <small>Description: {event.description}</small> <br/>
+                            <small>Event type: {event.event_type}</small> <br/>
                         </Card.Text>
                     </Card.Body>
                 </Card>
             </Container>
-            <h1>This is Show Page (｡･∀･)ﾉﾞ</h1>
         </>
     )
 }
