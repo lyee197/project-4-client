@@ -26,9 +26,20 @@ const IndexEvents = (props) => {
             })
     },[])
 
+    if (!events) {
+        return <p>loading...</p>
+    } else if (events.length === 0) {
+        return <p>no events yet, Create an event or wait for some</p>
+    }
+
+    let eventCards
+
     return (
         <>
-            <h1>Index Page for Events</h1>
+            <h3>All the Events</h3>
+            <div>
+                {eventCards}
+            </div>
         </>
     )
 }
