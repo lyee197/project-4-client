@@ -14,6 +14,7 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import ShowEvent from './components/events/ShowEvent'
 import IndexEvents from './components/events/IndexEvents'
+import CreateEvent from './components/events/CreateEvent'
 
 const App = () => {
 
@@ -73,6 +74,14 @@ const App = () => {
 				<Route
 					path='/events'
 					element={<IndexEvents msgAlert={msgAlert} user={user} />}
+				/>
+				<Route 
+					path='/addevent'
+					element={
+						<RequireAuth user={user}>
+							<CreateEvent msgAlert={msgAlert} user={user} />
+						</RequireAuth>
+					}
 				/>
 				<Route
 					path='/events/:id'

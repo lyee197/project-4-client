@@ -93,7 +93,7 @@ const ShowEvent = (props) => {
                 user={user}
                 msgAlert={msgAlert}
                 triggerRefresh={() => setUpdated(prev => !prev)}
-                updatedEvent={updateEvent}
+                updateEvent={updateEvent}
                 handleClose={() => setModalOpen(false)}
             />
         </>

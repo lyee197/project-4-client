@@ -20,6 +20,7 @@ const EventForm = (props) => {
                     placeholder="Give this event a description"
                     value={event.description}
                     name="description"
+                    onChange={handleChange}
                 />
                 <Form.Label>Date</Form.Label>
                 <input 
@@ -28,11 +29,12 @@ const EventForm = (props) => {
                     min="2022-04-01"
                     max="2023-04-01"
                     value={event.date}
+                    onChange={handleChange}
                 />
-                <Form.Select value={event.event_type}>
-                    <option>Opent this select menu</option>
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
+                <Form.Select  aria-label="event type" name="event_type" defaultValue={event.event_type} onChange={handleChange}>
+                    <option>Open this select menu</option>
+                    <option value="public">public</option>
+                    <option value="private">private</option>
                 </Form.Select>
                 <Button type="submit">Submit</Button>
             </Form>

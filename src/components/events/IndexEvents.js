@@ -3,6 +3,7 @@ import { getAllEvents } from '../../api/events'
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { indexEventsFailure, indexEventsSuccess } from '../shared/AutoDismissAlert/messages'
+import CreateEvent from './CreateEvent'
 
 // I'm going to declare a style object
 // this will be used to corral my cards
