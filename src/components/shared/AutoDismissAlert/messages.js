@@ -6,6 +6,12 @@ const messages = {
 	signOutSuccess: 'Come back soon!',
 	changePasswordSuccess: 'Password changed successfully!',
 	changePasswordFailure:'Failed to change passwords. Check your old password and try again.',
+	indexEventsSuccess: "Events retrieved successfully!",
+	indexEventsFailure: 'Failed to get events. Please try again.',
+	showEventSuccess: "Event retrieved successfully!",
+	showEventFailure: "Failed to get event. Please try again.",
+	createEventSuccess: "Event created successfully!",
+	createEventFailure: "Something went wrong. Please try again",
 }
 
 module.exports = messages
