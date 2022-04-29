@@ -35,6 +35,25 @@ const ShowEvent = (props) => {
         })
     }, [updated])
     
+    const removeTheEvent = () => {
+        removeEvent(user, event._id)
+            .then(() => {
+                msgAlert({
+                    heading: 'Event Removed x_x',
+                    message: 'No more event',
+                    variant: 'success',
+                })
+            })
+            .then(() => {navigate(`/events`)})
+            .catch(() => {
+                msgAlert({
+                    heading: 'something went wrong',
+                    message: 'that aint it',
+                    variant: 'danger',
+                })
+            })
+    }
+
     if (!event) {
         return (
             <Container fluid className="justify-content-center">
@@ -61,6 +80,9 @@ const ShowEvent = (props) => {
                     <Card.Footer>
                         <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
                             Edit Event
+                        </Button>
+                        <Button onClick={() => removeTheEvent()}className="m-2" variant="danger">
+                            Delete Pet
                         </Button>
                     </Card.Footer>
                 </Card>
