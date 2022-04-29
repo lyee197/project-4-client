@@ -34,6 +34,17 @@ const IndexEvents = (props) => {
 
     let eventCards
 
+    if (events.length > 0) {
+        eventCards = events.map(event => (
+            <div key={event.id}>
+                <Link to={`/events/${event._id}`}>
+                    {event.name}
+                </Link>
+                <p>Number of attendies: {event.attendies.length()}</p>
+            </div>
+        ))
+    }
+
     return (
         <>
             <h3>All the Events</h3>
