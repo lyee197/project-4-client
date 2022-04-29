@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { Spinner, Container, Card, Button } from "react-bootstrap"
 import { useParams, useNavigate } from "react-router-dom"
-import { getOneEvent } from "../../api/events"
+import { getOneEvent, updateEvent, removeEvent } from "../../api/events"
 import { showEventSuccess, showEventFailure } from '../shared/AutoDismissAlert/messages'
+import EditEventModal from "./EditEventModal"
 
 
 const ShowEvent = (props) => {
@@ -57,8 +58,22 @@ const ShowEvent = (props) => {
                             <small>Event type: {event.event_type}</small> <br/>
                         </Card.Text>
                     </Card.Body>
+                    <Card.Footer>
+                        <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
+                            Edit Event
+                        </Button>
+                    </Card.Footer>
                 </Card>
             </Container>
+            <EditEventModal
+                event={event}
+                show={modalOpen}
+                user={user}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                updatedEvent={updateEvent}
+                handleClose={() => setModalOpen(false)}
+            />
         </>
     )
 }

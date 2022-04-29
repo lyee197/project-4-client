@@ -1,9 +1,28 @@
-import { useState } from "react"
+import React, { useState } from "react"
+import { Modal } from 'react-bootstrap'
+import EventForm from '../shared/EventForm'
 
 const EditEventModal = (props) => {
     const { user, show, handleClose, updateEvent, msgAlert, triggerRefresh } = props
     const [event, setEvent] = useState(props.event)
 
+    const handleChange = (e) => {
+        // e === event
+        e.persist()
+
+        setEvent(prevEvent => {
+            const name = e.target.name
+            let value = e.target.value
+            console.log(e.target.type)
+            const updatedValue = { [name]: value}
+
+            console.log('prevEvent', prevEvent)
+            console.log('updatedValue', updatedValue)
+
+            return {...prevEvent, ...updatedValue}
+        })
+    }
+    
     const handleSubmit = (e) => {
         // e === event
         e.preventDefault()

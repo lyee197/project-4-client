@@ -6,8 +6,6 @@ const Home = (props) => {
 
 	return (
 		<>
-			<h2>Home Page</h2>
-			<h3>We finally got here</h3>
 			<IndexEvents msgAlert={props.msgAlert} />
 		</>
 	)
