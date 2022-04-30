@@ -15,6 +15,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import ShowEvent from './components/events/ShowEvent'
 import IndexEvents from './components/events/IndexEvents'
 import CreateEvent from './components/events/CreateEvent'
+import CreatePet from './components/pets/CreatePet'
 
 const App = () => {
 
@@ -86,6 +87,14 @@ const App = () => {
 				<Route
 					path='/events/:id'
 					element={<ShowEvent msgAlert={msgAlert} user={user} />}
+				/>
+				<Route 
+					path='/addpet'
+					element={
+						<RequireAuth user={user}>
+							<CreatePet msgAlert={msgAlert} user={user} />
+						</RequireAuth>
+					}
 				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (

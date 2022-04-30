@@ -18,7 +18,11 @@ const authenticatedOptions = (
 				Events
 			</Link>
 		</Nav.Item>
-
+		<Nav.Item>
+			<Link to='addPet' style={linkStyle}>
+				Add New Pet
+			</Link>
+		</Nav.Item>
 		<Nav.Item>
 			<Link to='change-password' style={linkStyle}>
 				Change Password

@@ -82,7 +82,7 @@ const ShowEvent = (props) => {
                             Edit Event
                         </Button>
                         <Button onClick={() => removeTheEvent()}className="m-2" variant="danger">
-                            Delete Pet
+                            Delete Event
                         </Button>
                     </Card.Footer>
                 </Card>
