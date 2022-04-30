@@ -35,3 +35,15 @@ export const updatePet = (user, updatedPet) => {
         data: { pet: updatedPet }
     })
 }
+
+//  DELETE -> remove function
+export const removePet = (user, petId) => {
+    console.log('user', user)
+    return axios({
+        url: `${apiUrl}/pets/${petId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
