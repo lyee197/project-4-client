@@ -57,7 +57,7 @@ const CreateEvent = (props) => {
                     message: createEventFailure,
                     variant: 'danger',
                 }))
-        // console.log('this is the pet', pet)
+        // console.log('this is the event', event)
     }
 
     return (
