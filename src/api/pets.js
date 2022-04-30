@@ -21,3 +21,17 @@ export const createPet = (user, newPet) => {
         data: {pet: newPet}
     })
 }
+
+// PATCH -> updated function
+export const updatePet = (user, updatedPet) => {
+    console.log('user', user)
+    console.log('this is newPet', updatedPet)
+    return axios({
+        url: `${apiUrl}/pets/${updatedPet._id}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
+        data: { pet: updatedPet }
+    })
+}
