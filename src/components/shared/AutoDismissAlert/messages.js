@@ -14,6 +14,8 @@ const messages = {
 	createEventFailure: "Something went wrong. Please try again",
 	createPetSuccess: "Pet created successfully!",
 	createPetFailure: "Something went wrong. Please try again",
+	indexPetsSuccess: "Pets retrieved successfully!",
+	indexPetsFailure: 'Failed to get pets. Please try again.',
 }
 
 module.exports = messages

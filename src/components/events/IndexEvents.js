@@ -53,7 +53,9 @@ const IndexEvents = (props) => {
             // one method of styling, usually reserved for a single style
             // we can use inline, just like in html
             <Card key={event.id} style={{ width: '30%' }} className="m-2" >
-                <Card.Header><Link to={`/events/${event._id}`}>{event.name}</Link></Card.Header>
+                <Card.Header>
+                    <Link to={`/events/${event._id}`}>{event.name}</Link>
+                </Card.Header>
                 <Card.Body>
                     <Card.Text>
                         {event.description}<br/>

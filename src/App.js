@@ -15,6 +15,7 @@ import ChangePassword from './components/auth/ChangePassword'
 import ShowEvent from './components/events/ShowEvent'
 import IndexEvents from './components/events/IndexEvents'
 import CreateEvent from './components/events/CreateEvent'
+import IndexPets from './components/pets/IndexPets'
 import CreatePet from './components/pets/CreatePet'
 
 const App = () => {
@@ -87,6 +88,10 @@ const App = () => {
 				<Route
 					path='/events/:id'
 					element={<ShowEvent msgAlert={msgAlert} user={user} />}
+				/>
+				<Route
+					path='/pets'
+					element={<IndexPets msgAlert={msgAlert} user={user} />}
 				/>
 				<Route 
 					path='/addpet'
