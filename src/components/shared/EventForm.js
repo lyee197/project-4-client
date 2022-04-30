@@ -23,6 +23,7 @@ const EventForm = (props) => {
                     onChange={handleChange}
                 />
                 <Form.Label>Date</Form.Label>
+                <br/>
                 <input 
                     type="date" 
                     name="date"
@@ -31,6 +32,8 @@ const EventForm = (props) => {
                     value={event.date}
                     onChange={handleChange}
                 />
+                <br/>
+                <Form.Label>Event Type</Form.Label>
                 <Form.Select  aria-label="event type" name="event_type" defaultValue={event.event_type} onChange={handleChange}>
                     <option>Open this select menu</option>
                     <option value="public">public</option>
