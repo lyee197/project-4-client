@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
 import { Card, Container, Spinner, Button } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
-import { updateEvent } from "../../api/events"
-import { getOnePet, removePet } from "../../api/pets"
+import { getOnePet, removePet, updatePet } from "../../api/pets"
 import { showPetSuccess, showPetFailure } from "../shared/AutoDismissAlert/messages"
 import EditPetModal from "./EditPetModal"
 
@@ -32,7 +31,7 @@ const ShowPet = (props) => {
                 variant: 'danger',
             })
         })
-    },[])
+    },[updated])
 
     const removeThePet = () => {
         removePet(user, pet._id)
@@ -90,7 +89,9 @@ const ShowPet = (props) => {
                 show={modalOpen}
                 user={user}
                 msgAlert={msgAlert}
-                updatePet={updateEvent}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                updatePet={updatePet}
+                handleClose={() => setModalOpen(false)}
             />
         </>
     )
