@@ -20,9 +20,20 @@ export const updateComment = (user, eventId, commentId, updatedComment) => {
         url: `${apiUrl}/comments/${eventId}/${commentId}`,
         method: 'PATCH',
         headers: {
-            Authorization: `Token token=${user.token}`
+            Authorization: `Token token=${user.token}`,
         },
         data: { comment: updatedComment}
     })
 }
 
+// DELETE -> remove function
+export const deleteComment = (user, eventId, reviewId) => {
+    console.log('user', user)
+    return axios({
+        url: `${apiUrl}/comments/${eventId}/${commentId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`,
+        }
+    })
+}
