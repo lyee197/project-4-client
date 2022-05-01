@@ -1,8 +1,17 @@
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { getAllPets } from "../../api/pets"
 import { indexPetsSuccess, indexPetsFailure } from "../shared/AutoDismissAlert/messages"
+
+// I'm going to declare a style object
+// this will be used to corral my cards
+// we can use basic CSS, but we have to use JS syntax
+const cardContainerLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexFlow: 'row wrap'
+}
 
 const IndexPets = (props) => {
     const [pets, setPets] = useState(null)

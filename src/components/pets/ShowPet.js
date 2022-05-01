@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Container, Spinner } from "react-bootstrap"
+import { Card, Container, Spinner } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
 import { getOnePet } from "../../api/pets"
 import { showPetSuccess, showPetFailure } from "../shared/AutoDismissAlert/messages"
@@ -18,19 +18,19 @@ const ShowPet = (props) => {
         .then(res => setPet(res.data.pet))
         .then(() => {
             msgAlert({
-                heading: 'Here is the Event!',
+                heading: 'Here is the Pet!',
                 message: showPetSuccess,
                 variant: 'success',
             })
         })
         .catch(() => {
             msgAlert({
-                heading: 'No event found',
+                heading: 'No pet found',
                 message: showPetFailure,
                 variant: 'danger',
             })
         })
-    }, [updated])
+    },[])
 
     if (!pet) {
         return (
@@ -44,7 +44,18 @@ const ShowPet = (props) => {
 
     return(
         <>
-            <h1>This is ShowPet</h1>
+            <Container className="fluid">
+                <Card>
+                    <Card.Header> {pet.name}</Card.Header>
+                    <Card.Body>
+                        <Card.Text>
+                            <small>Owner {pet.owner}</small><br/>
+                            <small>Date of Birth: {pet.birthday}</small><br/>
+                            <small>Animal Type: {pet.animalType}</small>
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Container>
         </>
     )
 }

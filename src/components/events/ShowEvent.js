@@ -5,9 +5,7 @@ import { getOneEvent, updateEvent, removeEvent } from "../../api/events"
 import { showEventSuccess, showEventFailure } from '../shared/AutoDismissAlert/messages'
 import EditEventModal from "./EditEventModal"
 
-
 const ShowEvent = (props) => {
-
     const [event, setEvent] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
