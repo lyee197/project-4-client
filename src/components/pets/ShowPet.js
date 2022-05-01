@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react"
-import { Card, Container, Spinner } from "react-bootstrap"
+import { Card, Container, Spinner, Button } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
+import { updateEvent } from "../../api/events"
 import { getOnePet } from "../../api/pets"
 import { showPetSuccess, showPetFailure } from "../shared/AutoDismissAlert/messages"
+import EditPetModal from "./EditPetModal"
 
 const ShowPet = (props) => {
     const [pet, setPet] = useState(null)
@@ -54,8 +56,18 @@ const ShowPet = (props) => {
                             <small>Animal Type: {pet.animalType}</small>
                         </Card.Text>
                     </Card.Body>
+                    <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
+                        Edit Pet
+                    </Button>
                 </Card>
             </Container>
+            <EditPetModal
+                pet={pet}
+                show={modalOpen}
+                user={user}
+                msgAlert={msgAlert}
+                updatePet={updateEvent}
+            />
         </>
     )
 }
