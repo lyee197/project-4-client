@@ -17,6 +17,7 @@ import IndexEvents from './components/events/IndexEvents'
 import CreateEvent from './components/events/CreateEvent'
 import IndexPets from './components/pets/IndexPets'
 import CreatePet from './components/pets/CreatePet'
+import ShowPet from './components/pets/ShowPet'
 
 const App = () => {
 
@@ -100,6 +101,10 @@ const App = () => {
 							<CreatePet msgAlert={msgAlert} user={user} />
 						</RequireAuth>
 					}
+				/>
+				<Route
+					path='/pets/:id'
+					element={<ShowPet msgAlert={msgAlert} user={user} />}
 				/>
 			</Routes>
 			{msgAlerts.map((msgAlert) => (
