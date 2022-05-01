@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { Card, Container, Spinner, Button } from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
 import { updateEvent } from "../../api/events"
-import { getOnePet } from "../../api/pets"
+import { getOnePet, removePet } from "../../api/pets"
 import { showPetSuccess, showPetFailure } from "../shared/AutoDismissAlert/messages"
 import EditPetModal from "./EditPetModal"
 
@@ -34,6 +34,25 @@ const ShowPet = (props) => {
         })
     },[])
 
+    const removeThePet = () => {
+        removePet(user, pet._id)
+            .then(() => {
+                msgAlert({
+                    heading: 'Pet Removed x_x',
+                    message: 'No more event',
+                    variant: 'success',
+                })
+            })
+            .then(() => {navigate(`/pets`)})
+            .catch(() => {
+                msgAlert({
+                    heading: 'something went wrong',
+                    message: 'that aint it',
+                    variant: 'danger',
+                })
+            })
+    }
+
     if (!pet) {
         return (
             <Container fluid className="justify-content-center">
@@ -56,9 +75,14 @@ const ShowPet = (props) => {
                             <small>Animal Type: {pet.animalType}</small>
                         </Card.Text>
                     </Card.Body>
-                    <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
-                        Edit Pet
-                    </Button>
+                    <Card.Footer>
+                        <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
+                            Edit Pet
+                        </Button>
+                        <Button onClick={() => removeThePet()} className="m-2" variant="danger">
+                            Delete Pet
+                        </Button>
+                    </Card.Footer>
                 </Card>
             </Container>
             <EditPetModal

@@ -79,7 +79,7 @@ const ShowEvent = (props) => {
                         <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
                             Edit Event
                         </Button>
-                        <Button onClick={() => removeTheEvent()}className="m-2" variant="danger">
+                        <Button onClick={() => removeTheEvent()} className="m-2" variant="danger">
                             Delete Event
                         </Button>
                     </Card.Footer>
