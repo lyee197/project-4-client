@@ -4,10 +4,18 @@ import { useParams, useNavigate } from "react-router-dom"
 import { getOneEvent, updateEvent, removeEvent } from "../../api/events"
 import { showEventSuccess, showEventFailure } from '../shared/AutoDismissAlert/messages'
 import EditEventModal from "./EditEventModal"
+import ShowComment from '../comments/ShowComment'
+
+const cardContainerLayout = {
+    display: 'flex',
+    justifyContent: 'center',
+    flexFlow: 'row wrap'
+}
 
 const ShowEvent = (props) => {
     const [event, setEvent] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
+    const [commentModalOpen, setCommentModalOpent] = useState(false)
     const [updated, setUpdated] = useState(false)
     const {user, msgAlert} = props
     const { id } = useParams()
@@ -52,6 +60,17 @@ const ShowEvent = (props) => {
             })
     }
 
+    let commentCards
+    if (event) {
+        if (event.comments.length > 0) {
+            commentCards = event.comments.map(comment => (
+                // need to pass all props needed for updateComment func in edit modal
+                <ShowComment
+                />
+            ))
+        }
+    }
+
     if (!event) {
         return (
             <Container fluid className="justify-content-center">
@@ -84,6 +103,9 @@ const ShowEvent = (props) => {
                         </Button>
                     </Card.Footer>
                 </Card>
+            </Container>
+            <Container style={cardContainerLayout}>
+                {commentCards}
             </Container>
             <EditEventModal
                 event={event}
