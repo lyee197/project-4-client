@@ -16,6 +16,8 @@ const messages = {
 	createPetFailure: "Something went wrong. Please try again",
 	indexPetsSuccess: "Pets retrieved successfully!",
 	indexPetsFailure: 'Failed to get pets. Please try again.',
+	showPetSuccess: "Pet retrieved successfully!",
+	showPetFailure: "Failed to get pet. Please try again.",
 }
 
 module.exports = messages
