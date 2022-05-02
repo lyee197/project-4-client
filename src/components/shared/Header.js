@@ -8,47 +8,47 @@ const linkStyle = {
 }
 const authenticatedOptions = (
 	<>
-		<Nav.Item>
+		<Nav.Link>
 			<Link to='addEvent' style={linkStyle}>
 				Add New Event
 			</Link>
-		</Nav.Item>
-		<Nav.Item>
+		</Nav.Link>
+		<Nav.Link>
 			<Link to='/events' style={linkStyle}>
 				Events
 			</Link>
-		</Nav.Item>
-		<Nav.Item>
+		</Nav.Link>
+		<Nav.Link>
 			<Link to='addPet' style={linkStyle}>
 				Add New Pet
 			</Link>
-		</Nav.Item>
-		<Nav.Item>
+		</Nav.Link>
+		<Nav.Link>
 			<Link to='/pets' style={linkStyle}>
 				Pets
 			</Link>
-		</Nav.Item>
-		<Nav.Item>
+		</Nav.Link>
+		<Nav.Link>
 			<Link to='change-password' style={linkStyle}>
 				Change Password
 			</Link>
-		</Nav.Item>
-		<Nav.Item>
+		</Nav.Link>
+		<Nav.Link>
 			<Link to='sign-out' style={linkStyle}>
 				Sign Out
 			</Link>
-		</Nav.Item>
+		</Nav.Link>
 	</>
 )
 
 const unauthenticatedOptions = (
 	<>
-        <Nav.Item>
+        <Nav.Link>
 		    <Link to='sign-up' style={linkStyle}>Sign Up</Link>
-        </Nav.Item>
-        <Nav.Item>
+        </Nav.Link>
+        <Nav.Link>
 		    <Link to='sign-in' style={linkStyle}>Sign In</Link>
-        </Nav.Item>
+        </Nav.Link>
 	</>
 )
 
