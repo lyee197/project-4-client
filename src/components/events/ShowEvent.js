@@ -16,7 +16,7 @@ const cardContainerLayout = {
 const ShowEvent = (props) => {
     const [event, setEvent] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
-    const [commentModalOpen, setCommentModalOpent] = useState(false)
+    const [commentModalOpen, setCommentModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
     const {user, msgAlert} = props
     const { id } = useParams()
@@ -92,7 +92,7 @@ const ShowEvent = (props) => {
                     <Card.Header> {event.name}</Card.Header>
                     <Card.Body>
                         <Card.Text>
-                            <small>Host {event.owner}</small> <br/>
+                            <small>Host {event.owner._id}</small> <br/>
                             <small>Date of Event: {event.date}</small> <br/>
                             <small>Description: {event.description}</small> <br/>
                             <small>Event type: {event.event_type}</small> <br/>
