@@ -8,6 +8,9 @@ export const createComment = (user, eventId, newComment) => {
     return axios({
         url: `${apiUrl}/comments/${eventId}`,
         method: 'POST',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        },
         data: { comment: newComment}
     })
 }
@@ -27,7 +30,7 @@ export const updateComment = (user, eventId, commentId, updatedComment) => {
 }
 
 // DELETE -> remove function
-export const deleteComment = (user, eventId, reviewId) => {
+export const deleteComment = (user, eventId, commentId) => {
     console.log('user', user)
     return axios({
         url: `${apiUrl}/comments/${eventId}/${commentId}`,

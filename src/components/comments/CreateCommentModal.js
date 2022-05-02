@@ -1,11 +1,12 @@
-import { useState } from "react"
-import { Navigate } from "react-router-dom"
+import React, { useState } from "react"
+import { createComment } from '../../api/comments'
+import { useNavigate } from "react-router-dom"
 import CommentForm from "../shared/CommentForm"
 
 const CreateCommentModal = (props) => {
-    const {user, event, show, handleClose, msgAlert, triggerRefresh } = props
-    const [comment, setComment] = useState({})
-
+    const {user, event, msgAlert, triggerRefresh} = props
+    const navigate = useNavigate()
+    const [comment, setComment] = useState([])
     const handleChange = (e) => {
         // e === event
         e.persist()
@@ -25,19 +26,24 @@ const CreateCommentModal = (props) => {
             return {...prevComment, ...updatedValue}
         })
     }
-
+    
     const handleSubmit = (e) => {
         // e === event
         e.preventDefault()
 
-        console.log('the comment to submit', comment)
-        giveComment(user, event._id, comment)
+        // console.log('the comment to submit', comment)
+        // console.log('this is user', user)
+        // console.log('this is user.id', props.user._id)
+        console.log('this is event', event)
+        console.log('this is event', event._id)
+        // console.log('this is author', author)
+        createComment(user, event._id, comment)
             // if create is successful, we should navigate to the show page
-            .then(res => {Navigate(`events/${res.data.event._id}`)})
+            .then(res => { navigate(`/events/${event._id}`)})
             // then we send a success message
             .then(() =>
                 msgAlert({
-                    heading: 'Toy given to pet!',
+                    heading: 'Comment given to event!',
                     message: 'great! the pet loves it!',
                     variant: 'success',
                 }))
@@ -53,6 +59,8 @@ const CreateCommentModal = (props) => {
 
     return (
         <CommentForm
+            user={user}
+            event={event}
             comment={comment}
             handleChange={handleChange}
             handleSubmit={handleSubmit}

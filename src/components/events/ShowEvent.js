@@ -5,6 +5,7 @@ import { getOneEvent, updateEvent, removeEvent } from "../../api/events"
 import { showEventSuccess, showEventFailure } from '../shared/AutoDismissAlert/messages'
 import EditEventModal from "./EditEventModal"
 import ShowComment from '../comments/ShowComment'
+import CreateCommentModal from "../comments/CreateCommentModal"
 
 const cardContainerLayout = {
     display: 'flex',
@@ -66,6 +67,9 @@ const ShowEvent = (props) => {
             commentCards = event.comments.map(comment => (
                 // need to pass all props needed for updateComment func in edit modal
                 <ShowComment
+                    key={comment._id} comment={comment} event={event}
+                    user={user} msgAlert={msgAlert}
+                    triggerRefresh={() => setUpdated(prev => !prev)}
                 />
             ))
         }
@@ -115,6 +119,13 @@ const ShowEvent = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 updateEvent={updateEvent}
                 handleClose={() => setModalOpen(false)}
+            />
+            <CreateCommentModal
+                event={event}
+                show={commentModalOpen}
+                user={user}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
             />
         </>
     )

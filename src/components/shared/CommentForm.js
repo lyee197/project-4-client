@@ -1,9 +1,9 @@
+import React from 'react'
 import { Container, Form, Button } from "react-bootstrap"
 
 const CommentForm = (props) => {
 
-    const { user, comment, handleChange, handleSubmit, heading } = props
-    console.log('this is user', user)
+    const { comment, event, handleChange, handleSubmit, heading } = props
 
     return (
         <Container className="justify-content-center">
@@ -11,11 +11,14 @@ const CommentForm = (props) => {
             <Form onSubmit={handleSubmit}>
                 <Form.Label>Comment</Form.Label>
                 <Form.Control
+                type='text'
+                name='comment'
                 placeholder="Enter you comment!"
-                value={comment.comment}
+                // value={comment.comment}
+                onChange={handleChange}
                 />
+                <Button className='show-buttons' type="submit">Submit</Button>
             </Form>
-            <Button type="submit">Submit</Button>
         </Container>
     )
 }
