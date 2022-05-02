@@ -36,20 +36,18 @@ const ShowComment = (props) => {
             <Card.Body>
                 <p>{comment.comment}</p>
             </Card.Body>
-        <Card.Footer>
             {
+            
                 (user != null) && (user.id === comment.author)
                 ?
-                    <>
+                    <Card.Footer>
                         <Button onClick={() => destroyComment()} variant="danger">
                             Delete Comment
                         </Button>
-                    </>
+                    </Card.Footer>
                 :
                 null 
             }
-
-        </Card.Footer>
         </Card>
     )
 }
