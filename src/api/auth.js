@@ -1,6 +1,15 @@
 import apiUrl from '../apiConfig'
 import axios from 'axios'
 
+export const getAllUsers = () => {
+	return axios(`${apiUrl}/user`)
+}
+
+export const getOneUser = () => {
+
+	return axios(`${apiUrl}/user/:id`)
+}
+
 export const signUp = (credentials) => {
 	return axios({
 		method: 'POST',
