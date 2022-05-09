@@ -19,11 +19,13 @@ import IndexPets from './components/pets/IndexPets'
 import CreatePet from './components/pets/CreatePet'
 import ShowPet from './components/pets/ShowPet'
 import IndexUsers from './components/users/IndexUsers'
+import PetsToEvent from './components/events/PetsToEvent'
 
-const App = () => {
-
+const App = (props) => {
+    const [updated, setUpdated] = useState(false)
 	const [user, setUser] = useState(null)
 	const [msgAlerts, setMsgAlerts] = useState([])
+	const {triggerRefresh} = props
 
 	console.log('user in app', user)
 	console.log('message alerts', msgAlerts)
@@ -86,6 +88,10 @@ const App = () => {
 							<CreateEvent msgAlert={msgAlert} user={user} />
 						</RequireAuth>
 					}
+				/>
+				<Route
+					path='/events/:id/addpets'
+					element={<PetsToEvent msgAlert={msgAlert} user={user} triggerRefresh={() => setUpdated(prev => !prev)} />}
 				/>
 				<Route
 					path='/events/:id'

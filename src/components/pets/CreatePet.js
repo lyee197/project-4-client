@@ -45,10 +45,10 @@ const CreatePet = (props) => {
             .then(res => {navigate(`/pets/${res.data.pet._id}`)})
             // then we send a success message
             .then(() =>
-            msgAlert({
-                heading: 'Event Added! Success!',
-                message: createPetSuccess,
-                variant: 'success',
+                msgAlert({
+                    heading: 'Event Added! Success!',
+                    message: createPetSuccess,
+                    variant: 'success',
             }))
         // if there is an error, we'll send an error message
         .catch(() =>

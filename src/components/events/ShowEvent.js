@@ -16,7 +16,7 @@ const cardContainerLayout = {
 const ShowEvent = (props) => {
     const [event, setEvent] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
-    const [commentModalOpen, setCommentModalOpen] = useState(false)
+    const [commentModalOpen, setCommentModalOpen] = useState([])
     const [updated, setUpdated] = useState(false)
     const {user, msgAlert} = props
     const { id } = useParams()
@@ -25,7 +25,10 @@ const ShowEvent = (props) => {
     // empty dependency array in useEffect to act like component did mount
     useEffect(() => {
         getOneEvent(id)
-        .then(res => setEvent(res.data.event))
+        .then(res => {
+            setEvent(res.data.event)
+            setCommentModalOpen(res.data.event.comments)
+        })
         .then(() => {
             msgAlert({
                 heading: 'Here is the Event!',
@@ -41,6 +44,7 @@ const ShowEvent = (props) => {
             })
         })
     }, [updated])
+    console.log('this is events attendants', event)
     
     const removeTheEvent = () => {
         removeEvent(user, event._id)
@@ -62,6 +66,7 @@ const ShowEvent = (props) => {
     }
 
     let commentCards
+    let attendantsArray
     if (event) {
         if (event.comments.length > 0) {
             commentCards = event.comments.map(comment => (
@@ -73,7 +78,16 @@ const ShowEvent = (props) => {
                 />
             ))
         }
+        if (event.attendants.length > 0) {
+            attendantsArray = event.attendants.map((pet) => (
+                <div className="petShow">
+                    {pet.name}
+                </div>
+            ))
+        }
     }
+
+
 
     if (!event) {
         return (
@@ -95,7 +109,9 @@ const ShowEvent = (props) => {
                             <small>Host {event.owner._id}</small> <br/>
                             <small>Date of Event: {event.date}</small> <br/>
                             <small>Description: {event.description}</small> <br/>
-                            <small>Event type: {event.event_type}</small> <br/>
+                            <small>Event type: {event.event_type}</small><br/>
+                            <small>Pets attending:</small><br/>
+                            {attendantsArray}
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>

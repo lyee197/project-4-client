@@ -36,11 +36,33 @@ export const updatePet = (user, updatedPet) => {
     })
 }
 
+// PATCH -> Add Pet to Event
+export const addPetToEvent = (user, eventId, petId) => {
+    return axios({
+        url: `${apiUrl}/events/${eventId}/${petId}`,
+        method: 'PATCH',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
+
 //  DELETE -> remove function
 export const removePet = (user, petId) => {
     console.log('user', user)
     return axios({
         url: `${apiUrl}/pets/${petId}`,
+        method: 'DELETE',
+        headers: {
+            Authorization: `Token token=${user.token}`
+        }
+    })
+}
+
+// DELETE -> REMOVE PET FROM EVENT
+export const removeAPet = (user, eventId, petId) => {
+    return axios({
+        url: `${apiUrl}/events/${eventId},${petId}`,
         method: 'DELETE',
         headers: {
             Authorization: `Token token=${user.token}`

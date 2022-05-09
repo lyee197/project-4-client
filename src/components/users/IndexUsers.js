@@ -40,6 +40,11 @@ const IndexUsers = (props) => {
         userCards = users.map(user => (
             <Card key={user._id} style={{ width: '30%' }} className="m-2" >
                 <Card.Header>{user.email}</Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                        <small>{user.pets}</small>
+                    </Card.Text>
+                </Card.Body>
             </Card>
         ))
     }
