@@ -12,7 +12,7 @@ const cardContainerLayout = {
 
 const PetsToEvent = (props) => {
     const [pets, setPets] = useState(null)
-    const {eventId, show, petId, user, triggerRefresh, msgAlert, handleClose } = props
+    const {event, show, petId, user, triggerRefresh, msgAlert, handleClose } = props
     const navigate = useNavigate()
     useEffect(() => {
         getAllPets()
@@ -37,15 +37,15 @@ const PetsToEvent = (props) => {
     },[])
 
     const addAPetToEvent = (petId) => {
-        addPetToEvent(user, eventId, petId)
+        addPetToEvent(user, event._id, petId)
             .then(() => {triggerRefresh()})
-            // .then(() => 
-            //     msgAlert({
-            //         heading: 'Pets added to event!',
-            //         message: 'Nice!',
-            //         variant: 'success',
-            //     })
-            // )
+            .then(() => 
+                msgAlert({
+                    heading: 'Pets added to event!',
+                    message: 'Nice!',
+                    variant: 'success',
+                })
+            )
             // if there is an error, we'll send an error message
             .catch(() =>
                 msgAlert({
@@ -57,7 +57,7 @@ const PetsToEvent = (props) => {
     }
 
     const removeThePet = (petId) => {
-        removeAPet(user, eventId, petId)
+        removeAPet(user, event._id, petId)
             .then(() => {triggerRefresh()})
             .catch(() =>
                 msgAlert({
@@ -75,21 +75,20 @@ const PetsToEvent = (props) => {
 
     let petButtons
 
-
-        {if (pets.length > 0) {
-            petButtons = pets.map(pet => (
-                <>
-                    <Modal.Body>
-                        <Button id={pet._id} onClick={() => {addAPetToEvent(pet._id)}}>
-                            <span key={pet._id}>{pet.name}<br/>{pet.animalType}</span>
-                        </Button>
-                        <Button id={pet._id} onClick={() => {removeThePet(pet._id)}}>
-                            <span key={pet._id}>x</span>
-                        </Button>
-                    </Modal.Body>
-                </>
-            ))
-        }}
+    if (pets.length > 0) {
+        petButtons = pets.map(pet => (
+            <>
+                <Modal.Body key={pet._id}>
+                    <Button id={pet._id} onClick={() => {addAPetToEvent(pet._id)}}>
+                        <span key={pet._id}>{pet.name}<br/>{pet.animalType}</span>
+                    </Button>
+                    <Button id={pet._id} onClick={() => {removeThePet(pet._id)}}>
+                        <span key={pet._id}>x</span>
+                    </Button>
+                </Modal.Body>
+            </>
+        ))
+    }
 
 
     return (

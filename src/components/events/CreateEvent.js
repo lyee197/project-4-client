@@ -42,7 +42,7 @@ const CreateEvent = (props) => {
 
         createEvent(user, event)
             // if create is successful, we should navigate to the show page
-            .then(res => {navigate(`/events/${res.data.event._id}/addpets`)})
+            .then(res => {navigate(`/events/${res.data.event._id}`)})
             // then we send a success message
             .then(() =>
                 msgAlert({
@@ -57,7 +57,7 @@ const CreateEvent = (props) => {
                     message: createEventFailure,
                     variant: 'danger',
                 }))
-        // console.log('this is the event', event)
+        // console.log('this is the pet', pet)
     }
 
     return (
