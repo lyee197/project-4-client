@@ -1,8 +1,8 @@
-import { Button } from "bootstrap"
 import { useEffect, useState } from "react"
-import { Card } from "react-bootstrap"
+import { Card, Button, Modal } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { getAllPets, addPetToEvent, removeAPet } from "../../api/pets"
+import { indexPetsSuccess, indexPetsFailure } from "../shared/AutoDismissAlert/messages"
 
 const cardContainerLayout = {
     display: 'flex',
@@ -12,17 +12,29 @@ const cardContainerLayout = {
 
 const PetsToEvent = (props) => {
     const [pets, setPets] = useState(null)
-    const {eventId, petId, user, triggerRefresh, msgAlert } = props
+    const {eventId, show, petId, user, triggerRefresh, msgAlert, handleClose } = props
     const navigate = useNavigate()
     useEffect(() => {
         getAllPets()
-        .then(res => {
-            setPets(res.data.pets)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-    }, [])
+            .then(res => {
+                console.log('this is the res', res)
+                setPets(res.data.pets)
+            })
+            .then(() => {
+                msgAlert({
+                    heading: "Found Pets",
+                    mesage: indexPetsSuccess,
+                    variant: 'success'
+                })
+            })
+            .catch(() => {
+                msgAlert({
+                    heading: "No pet?!",
+                    message: indexPetsFailure,
+                    variant: 'danger'
+                })
+            })
+    },[])
 
     const addAPetToEvent = (petId) => {
         addPetToEvent(user, eventId, petId)
@@ -63,35 +75,32 @@ const PetsToEvent = (props) => {
 
     let petButtons
 
-    if (pets.length > 0) {
-        petButtons = pets.map((pet) => {
-            <Card className="m-2">
-                <Card.Header>
-                    <h1>Add Pets to Event!</h1>
-                </Card.Header>
-                <Card.Body>
-                    <Button id={pet._id} onClick={() => {addAPetToEvent(pet._id)}}>
-                        <span key={pet._id}>{pet.name}</span>
-                    </Button>
-                    <Button id={pet._id} onClick={() => {removeThePet(pet._id)}}>
-                        <span key={pet._id}>x</span>
-                    </Button>
-                </Card.Body>
-            </Card>
-        })
-    } else {
-        <div>
-            <h1>no pets? what?</h1>
-        </div>
-    }
+
+        {if (pets.length > 0) {
+            petButtons = pets.map(pet => (
+                <>
+                    <Modal.Body>
+                        <Button id={pet._id} onClick={() => {addAPetToEvent(pet._id)}}>
+                            <span key={pet._id}>{pet.name}<br/>{pet.animalType}</span>
+                        </Button>
+                        <Button id={pet._id} onClick={() => {removeThePet(pet._id)}}>
+                            <span key={pet._id}>x</span>
+                        </Button>
+                    </Modal.Body>
+                </>
+            ))
+        }}
+
 
     return (
-        <>
-            <h1>This is where you add Pets to events</h1>
             <div style={cardContainerLayout}>
-                {petButtons}
+                <Modal show={show} className="m-2" onHide={handleClose}>
+                    <Modal.Header closeButton>
+                        <h1>Add Pets to Event!</h1>
+                    </Modal.Header>
+                    {petButtons}
+                </Modal>
             </div>
-        </>
     )
 }
 

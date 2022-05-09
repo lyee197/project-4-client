@@ -6,6 +6,7 @@ import { showEventSuccess, showEventFailure } from '../shared/AutoDismissAlert/m
 import EditEventModal from "./EditEventModal"
 import ShowComment from '../comments/ShowComment'
 import CreateCommentModal from "../comments/CreateCommentModal"
+import PetsToEvent from "./PetsToEvent"
 
 const cardContainerLayout = {
     display: 'flex',
@@ -17,6 +18,7 @@ const ShowEvent = (props) => {
     const [event, setEvent] = useState(null)
     const [modalOpen, setModalOpen] = useState(false)
     const [commentModalOpen, setCommentModalOpen] = useState([])
+    const [addPetModal, setAddPetModalOpen] = useState(false)
     const [updated, setUpdated] = useState(false)
     const {user, msgAlert} = props
     const { id } = useParams()
@@ -28,6 +30,7 @@ const ShowEvent = (props) => {
         .then(res => {
             setEvent(res.data.event)
             setCommentModalOpen(res.data.event.comments)
+            // setAddPetModalOpen(res.data.event.attendants)
         })
         .then(() => {
             msgAlert({
@@ -118,6 +121,9 @@ const ShowEvent = (props) => {
                         <Button onClick={() => setModalOpen(true)} className="m-2" variant="warning">
                             Edit Event
                         </Button>
+                        <Button onClick={() => setAddPetModalOpen(true)} className="m-2" variant="info">
+                            Add Pets to Event!
+                        </Button>
                         <Button onClick={() => removeTheEvent()} className="m-2" variant="danger">
                             Delete Event
                         </Button>
@@ -135,6 +141,14 @@ const ShowEvent = (props) => {
                 triggerRefresh={() => setUpdated(prev => !prev)}
                 updateEvent={updateEvent}
                 handleClose={() => setModalOpen(false)}
+            />
+            <PetsToEvent
+                user={user}
+                event={event}
+                show={addPetModal}
+                msgAlert={msgAlert}
+                triggerRefresh={() => setUpdated(prev => !prev)}
+                handleClose={() => setAddPetModalOpen(false)}
             />
             <CreateCommentModal
                 event={event}
